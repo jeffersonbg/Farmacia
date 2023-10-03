@@ -21,11 +21,18 @@ from rest_framework.authtoken import views
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from users.api.views import UserProfileExampleViewSet
 from GDRFarmacia.api.views import EnderecoListCreateView ### Endereco View
+from GDRFarmacia.api.views import UsuarioListCreateView
+from GDRFarmacia.api.views import FuncionarioListCreateView
+from GDRFarmacia.api.views import ClienteListCreateView
+
 
 router = SimpleRouter()
 
 router.register("users", UserProfileExampleViewSet, basename="users")
-router.register("api/GDRFarmacia", EnderecoListCreateView, basename="endereco-list"), ## <-- Endereco list view route
+router.register("api/GDRFarmacia", EnderecoListCreateView, basename="endereços"), ## <-- Endereco list view route
+router.register("api/GDRFarmacia", UsuarioListCreateView, basename="usuários"),
+router.register("api/GDRFarmacia", FuncionarioListCreateView, basename="funcionários"),
+router.register("api/GDRFarmacia", ClienteListCreateView, basename="clientes"),
 
 urlpatterns = [
     path("admin/", admin.site.urls),

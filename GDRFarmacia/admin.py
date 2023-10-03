@@ -6,8 +6,14 @@ from django.contrib import admin
 
 from GDRFarmacia.models import Endereco  # <--- import the model
 from GDRFarmacia.models import Usuario
+from GDRFarmacia.models import Funcionario
+from GDRFarmacia.models import Cliente
+
+
 
 # Register your models here.
 
 admin.site.register(Endereco)  # <--- register the model
 admin.site.register(Usuario)
+admin.site.register(Funcionario)
+admin.site.register(Cliente)
