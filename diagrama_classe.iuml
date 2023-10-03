@@ -1,0 +1,185 @@
+@startuml farmacia
+
+class Usuario {
+  - id : int
+  - nome : String
+  - email : String
+  - senha : String
+  - isAtivado: boolean
+
+  + getId(): int
+  + setId(id: int): void
+  + getNome(): String
+  + setNome(nome: String): void
+  + getEmail(): String
+  + setEmail(email: String): void
+  + getSenha(): String
+  + setSenha(senha: String): void
+  + getIsAtivado(): boolean
+  + setIsAtivado(): boolean
+  + realiazrLogin(): void
+  + alterarSenha(): void
+
+}
+
+class Endereco {
+  - rua : String
+  - bairro : String
+  - numero_casa : String
+  - cep : String
+  - referencia : String
+  - estado : String
+  - cidade : String
+  
+  + getRua(): String
+  + setRua(rua: String): void
+  + getBairro(): String
+  + setBairro(nome: String): void
+  + getNumeroCasa(): String
+  + setNumeroCasa(numero: String): void
+  + getCep(): String
+  + setCep(cep: String): void
+  + getReferencia(): String
+  + setReferencia(referencia: String): void
+  + getEstado(): String
+  + setEstado(estado: String): void
+  + getCidade(): String
+  + setCidade(cidade: String): void
+
+  + imprimir(): String
+
+}
+
+class Cliente {
+  - telefone : String
+  - cpf : String
+
+  + getTelefone(): String
+  + setTelefone(telefone: String): void
+  + getCpf(): String
+  + setCpf(cpf: String): void
+
+  + imprimir(): String
+  + cadastrarCliente(): boolean
+  + atualizarCliente(): boolean
+}
+
+class Estoque {
+  - quantidadeMinima: int
+  - produtoList : list<Produto>
+
+  + getQauntidadeMinima(): int
+  + setQuantidadeMinima(): void
+  + relatorioEstoque(): void
+  + relatorioProduto(): void
+  + noticacaoEstoqueBaixo(): String
+  + adicionar(quantidade, Produto) boolean
+  + remover(quantidade, Produto) boolean
+  + consultarProduto(codigo) Produto
+  + listarProdutos()
+}
+
+class Caixa{
+  - historicoVendas: list<Venda>
+  - historicoDevolucoes: list<Venda>
+
+  + realizarVenda(Venda): boolean
+  + realizarDevolucao(codigo_venda):boolean
+  + getHistoricoVendas(): List<Venda>
+  + getHistoricoDevolucoes(): List<Devolucao>
+  + validarVenda(): boolean
+  + encontrarVenda(codigo): Venda
+}
+
+class Compra {
+  - cliente: Cliente
+  - codigoVenda: int
+  - listProduto: list<Produto>
+  - dataCompra : String    
+  - desconto : double
+  - valorAPagar : double 
+  - formaPagamento : String 
+  - nomeFuncionario : String  
+
+  + getCliente(): Cliente
+  + setCliente(): void
+  + getQuantidade(): int
+  + setQuantidade(quantidade: int): void
+  + getCodigo(): int
+  + setCodigo(codigo: int): void
+  + getValorAPagar(): double
+  + setValorAPagar(valor: double): void
+  + getDataCompra(): String
+  + setDataCompra(dataCompra: String): void
+  + getFormaPagamento(): String
+  + setFormaPagamento(formaPagamento: String): void
+  + getDesconto(): double
+  + setDesconto(desconto: double): void
+  + getNomeFuncionario(): String
+  + setNomeFuncionario(nomeFuncionario: String): void
+
+  + imprimir(): String
+  + adicionaProduto(Produto): boolean
+  + calcularValorTotal(): float
+}
+
+class Funcionario{
+  - nome: String
+  - cargo: String
+  - salario: double
+  - telefone: String
+  - cpf: String
+
+  + getNome(): String
+  + setNome(nome: String): void
+  + getSalario(): double
+  + setSalario(salario: double): void
+  + getTelefone(): String
+  + setTelefone(telefone: String): void
+  + getCpf(): String
+  + setCpf(): String
+  + imprimir(): String
+  + cadastrarFuncionario(): boolean
+  + atualizarFuncionario(): boolean
+}
+
+class Produto {
+    - id: int
+    - nome: string    
+    - descricao: string
+    - categoria: String
+    - precoVenda: float
+    - precoCompra: float
+    - quantidadeEmEstoque: int
+    - dataDeValidade: data
+    - fabricante: string
+    - fornecedor: String
+
+    + getId(): int
+    + getNome(): string
+    + setNome(): void
+    + getDescricao(): string
+    + setDescricao(): void
+    + getPreco(): float
+    + setPreco(): void
+    + getQuantidadeEmEstoque(): int
+    + setQuantidadeEmEstoque(): void
+    + getDataDeValidade(): data
+    + setDataDeValidade(): void
+    + getFabricante(): string
+    + setFabricante(): void
+    + cadastrarProduto(): boolean
+    + imprimir(): String
+    + cadastrarProduto(): boolean
+}
+
+Usuario <|-- Cliente
+Usuario <|-- Funcionario
+Funcionario "1" -- "0..*" Caixa : Trabalha >
+Endereco <-- Usuario
+Produto "0..*" *-- "1" Estoque : Contem <
+Caixa "1" o-- "0..*" Compra : Registra >
+Compra "1" -- "*" Produto : Contem >
+Cliente "0..*" -- "0..*" Compra : Realiza >
+
+@enduml

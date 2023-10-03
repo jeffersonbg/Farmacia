@@ -1,0 +1,43 @@
+@startuml farmacia_use_case
+
+left to right direction
+
+actor Cliente as c
+actor Funcionario as f
+actor Caixa as cx
+actor Sistema as s
+
+rectangle "Gerenciar Clientes" {
+  c --> (Cadastrar Cliente)
+  c --> (Atualizar Cliente)
+  c --> (Realizar Compra)
+  c --> (Realizar Login)
+  c --> (Alterar Senha)
+}
+
+rectangle "Gerenciar Funcionários" {
+  f --> (Cadastrar Funcionário)
+  f --> (Atualizar Funcionário)
+}
+
+rectangle "Gerenciar Compras" {
+  cx --> (Realizar Venda)
+  cx --> (Realizar Devolução)
+}
+
+rectangle "Gerenciar Estoque" {
+  f --> (Adicionar Produto no Estoque)
+  f --> (Remover Produto do Estoque)
+  f --> (Consultar Produto no Estoque)
+  f --> (Listar Produtos no Estoque)
+  s --> (Gerar Relatório de Estoque)
+  s --> (Gerar Relatório de Produto)
+  s --> (Notificação de Estoque Baixo)
+}
+
+rectangle "Gerenciar Produtos" {
+  f --> (Cadastrar Produto)
+  f --> (Atualizar Produto)
+}
+
+@enduml
