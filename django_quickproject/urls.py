@@ -24,15 +24,17 @@ from GDRFarmacia.api.views import EnderecoListCreateView ### Endereco View
 from GDRFarmacia.api.views import UsuarioListCreateView
 from GDRFarmacia.api.views import FuncionarioListCreateView
 from GDRFarmacia.api.views import ClienteListCreateView
+from GDRFarmacia.api.views import ProdutoListCreateView
 
 
 router = SimpleRouter()
 
 router.register("users", UserProfileExampleViewSet, basename="users")
-router.register("api/GDRFarmacia", EnderecoListCreateView, basename="endereços"), ## <-- Endereco list view route
-router.register("api/GDRFarmacia", UsuarioListCreateView, basename="usuários"),
-router.register("api/GDRFarmacia", FuncionarioListCreateView, basename="funcionários"),
+router.register("api/GDRFarmacia", EnderecoListCreateView, basename="enderecos"), ## <-- Endereco list view route
+router.register("api/GDRFarmacia", UsuarioListCreateView, basename="usuarios"),
+router.register("api/GDRFarmacia", FuncionarioListCreateView, basename="funcionarios"),
 router.register("api/GDRFarmacia", ClienteListCreateView, basename="clientes"),
+router.register("api/GDRFarmacia", ProdutoListCreateView, basename="produtos"),
 
 urlpatterns = [
     path("admin/", admin.site.urls),

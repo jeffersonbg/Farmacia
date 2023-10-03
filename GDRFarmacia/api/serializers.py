@@ -4,6 +4,7 @@ from GDRFarmacia.models import Endereco
 from GDRFarmacia.models import Usuario
 from GDRFarmacia.models import Funcionario
 from GDRFarmacia.models import Cliente
+from GDRFarmacia.models import Produto
 
 
 class EnderecoSerializer(serializers.ModelSerializer):
@@ -30,4 +31,9 @@ class FuncionarioSerializer(serializers.ModelSerializer):
 class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cliente
+        fields = '__all__'
+
+class ProdutoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Produto
         fields = '__all__'

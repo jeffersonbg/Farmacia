@@ -105,3 +105,39 @@ class Cliente(Usuario):
         self.telefone = telefone
         self.cpf = cpf
         self.save()
+
+class Produto(models.Model):
+    id = models.AutoField(primary_key=True)
+    nome = models.CharField(max_length=255)
+    descricao = models.TextField()
+    categoria = models.CharField(max_length=100)
+    precoVenda = models.DecimalField(max_digits=10, decimal_places=2)
+    precoCompra = models.DecimalField(max_digits=10, decimal_places=2)
+    quantidadeEmEstoque = models.PositiveIntegerField()
+    fabricante = models.CharField(max_length=255)
+    fornecedor = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.nome
+
+    def cadastrarProduto(self, nome, descricao, categoria, precoVenda, precoCompra, quantidadeEmEstoque, fabricante, fornecedor):
+        self.nome = nome
+        self.descricao = descricao
+        self.categoria = categoria
+        self.precoVenda = precoVenda
+        self.precoCompra = precoCompra
+        self.quantidadeEmEstoque = quantidadeEmEstoque
+        self.fabricante = fabricante
+        self.fornecedor = fornecedor
+        self.save()
+
+    def imprimir(self):
+        print(f"ID: {self.id}")
+        print(f"Nome: {self.nome}")
+        print(f"Descrição: {self.descricao}")
+        print(f"Categoria: {self.categoria}")
+        print(f"Preço de Venda: R${self.precoVenda:.2f}")
+        print(f"Preço de Compra: R${self.precoCompra:.2f}")
+        print(f"Quantidade em Estoque: {self.quantidadeEmEstoque}")
+        print(f"Fabricante: {self.fabricante}")
+        print(f"Fornecedor: {self.fornecedor}")
