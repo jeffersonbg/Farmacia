@@ -141,3 +141,28 @@ class Produto(models.Model):
         print(f"Quantidade em Estoque: {self.quantidadeEmEstoque}")
         print(f"Fabricante: {self.fabricante}")
         print(f"Fornecedor: {self.fornecedor}")
+
+class Estoque(models.Model):
+    quantidadeMinima = models.IntegerField()
+    produtoList = models.ManyToManyField(Produto, related_name='estoque')
+
+    def adicionarProduto(self, produto):
+        if isinstance(produto, Produto):
+            self.produtoList.append(produto)
+        else:
+            print("O objeto não é um Produto e não pode ser adicionado ao estoque.")
+
+    def removerProduto(self, produto):
+        if produto in self.produtoList:
+            self.produtoList.remove(produto)
+        else:
+            print("Produto não encontrado no estoque.")
+
+    def listarProdutos(self):
+        for produto in self.produtoList:
+            produto.imprimir()
+
+    def notificarEstoqueBaixo(self):
+        for produto in self.produtoList:
+            if produto.quantidadeEmEstoque < self.quantidadeMinima:
+                print(f"Notificação: O produto {produto.nome} está com a quantidade abaixo do mínimo. Quantidade atual: {produto.quantidadeEmEstoque}")

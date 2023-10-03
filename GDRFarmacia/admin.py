@@ -9,6 +9,7 @@ from GDRFarmacia.models import Usuario
 from GDRFarmacia.models import Funcionario
 from GDRFarmacia.models import Cliente
 from GDRFarmacia.models import Produto
+from GDRFarmacia.models import Estoque
 
 
 
@@ -19,3 +20,4 @@ admin.site.register(Usuario)
 admin.site.register(Funcionario)
 admin.site.register(Cliente)
 admin.site.register(Produto)
+admin.site.register(Estoque)
