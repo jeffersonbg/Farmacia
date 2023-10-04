@@ -75,3 +75,20 @@ a {
   text-decoration: none;
    color: #ffff;
 }
+
+@media screen and (max-width: 768px) {
+  body {
+    margin-left: 0; /* Remova a margem lateral direita em telas menores */
+  }
+
+  .login-container {
+    width: 90%; /* Reduza a largura do container em telas menores */
+    padding: 10px; /* Reduza o espaçamento interno */
+    height: auto; /* Ajuste a altura automaticamente */
+  }
+
+  input[type="email"],
+  input[type="password"] {
+    width: 90%; /* Reduza a largura dos campos de entrada */
+  }
+}
