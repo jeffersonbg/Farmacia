@@ -2,27 +2,26 @@
 
 left to right direction
 
-actor Cliente as c
 actor Funcionario as f
-actor Caixa as cx
 actor Sistema as s
+actor Gerente as g
 
 rectangle "Gerenciar Clientes" {
-  c --> (Cadastrar Cliente)
-  c --> (Atualizar Cliente)
-  c --> (Realizar Compra)
-  c --> (Realizar Login)
-  c --> (Alterar Senha)
+  f --> (Cadastrar Cliente)
+  f --> (Atualizar Cliente)
+  f --> (Realizar Compra)
+  f --> (Realizar Login)
+  f --> (Alterar Senha)
 }
 
 rectangle "Gerenciar Funcionários" {
-  f --> (Cadastrar Funcionário)
-  f --> (Atualizar Funcionário)
+  g --> (Cadastrar Funcionário)
+  g --> (Atualizar Funcionário)
 }
 
 rectangle "Gerenciar Compras" {
-  cx --> (Realizar Venda)
-  cx --> (Realizar Devolução)
+  f --> (Realizar Venda)
+  f --> (Realizar Devolução)
 }
 
 rectangle "Gerenciar Estoque" {
@@ -36,8 +35,10 @@ rectangle "Gerenciar Estoque" {
 }
 
 rectangle "Gerenciar Produtos" {
-  f --> (Cadastrar Produto)
-  f --> (Atualizar Produto)
+  g --> (Cadastrar Produto)
+  g --> (Atualizar Produto)
 }
+
+f <|-- g
 
 @enduml
