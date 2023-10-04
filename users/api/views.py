@@ -1,10 +1,14 @@
+"""views"""
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import AllowAny
 from users.api.serializers import UserProfileExampleSerializer
 
 from users.models import UserProfileExample
 
+
 class UserProfileExampleViewSet(ModelViewSet):
+    """Views"""
+
     serializer_class = UserProfileExampleSerializer
     permission_classes = [AllowAny]
     queryset = UserProfileExample.objects.all()
