@@ -166,3 +166,72 @@ class Estoque(models.Model):
         for produto in self.produtoList:
             if produto.quantidadeEmEstoque < self.quantidadeMinima:
                 print(f"Notificação: O produto {produto.nome} está com a quantidade abaixo do mínimo. Quantidade atual: {produto.quantidadeEmEstoque}")
+
+class Compra(models.Model):
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    codigoVenda = models.CharField(max_length=100)
+    listProduto = models.ManyToManyField(Produto)
+    dataCompra = models.DateField()
+    desconto = models.DecimalField(max_digits=10, decimal_places=2)
+    formaPagamento = models.CharField(max_length=50)
+    nomeFuncionario = models.CharField(max_length=100)
+
+    def calcularValorTotal(self):
+        total = sum(produto.precoVenda for produto in self.listProduto.all())
+        return total
+
+    def adicionarProduto(self, produto):
+        self.listProduto.add(produto)
+
+    def Imprimir(self):
+        print(f"Código da Venda: {self.codigoVenda}")
+        print(f"Cliente: {self.cliente.nome}")
+        print("Produtos:")
+        for produto in self.listProduto.all():
+            print(f"  - {produto.nome}: R${produto.precoVenda}")
+        print(f"Data da Compra: {self.dataCompra}")
+        print(f"Desconto: R${self.desconto}")
+        print(f"Forma de Pagamento: {self.formaPagamento}")
+        print(f"Funcionário: {self.nomeFuncionario}")
+        print(f"Valor Total: R${self.calcularValorTotal()}")
+
+class Caixa(models.Model):
+    def __init__(self):
+        self.historicoVenda = []
+        self.historicoDevolucoes = []
+
+    def validarVenda(self, compra):
+        # Verifica se a compra é válida antes de adicioná-la ao histórico
+        if isinstance(compra, Compra):
+            self.historicoVenda.append(compra)
+            print(f"Compra validada e registrada. Código da Venda: {compra.codigoVenda}")
+        else:
+            print("Erro: Compra inválida. A venda não foi registrada.")
+
+    def encontrarVenda(self, codigo):
+        # Encontra uma venda no histórico pelo código da venda
+        for compra in self.historicoVenda:
+            if compra.codigoVenda == codigo:
+                return compra
+        return None
+
+    def processarDevolucao(self, codigoVenda, produtos_devolvidos):
+        compra = self.encontrarVenda(codigoVenda)
+        if compra:
+            for produto_devolvido in produtos_devolvidos:
+                if isinstance(produto_devolvido, Produto):
+                    if produto_devolvido in compra.listProduto.all():
+                        compra.listProduto.remove(produto_devolvido)
+                        produto_devolvido.quantidadeEmEstoque += 1
+                        produto_devolvido.save()
+                        print(f"Produto {produto_devolvido.nome} devolvido e adicionado ao estoque.")
+                    else:
+                        print(f"Erro: Produto {produto_devolvido.nome} não pertence à compra.")
+                else:
+                    print("Erro: Produto inválido.")
+            self.historicoDevolucoes.append({"codigoVenda": codigoVenda, "produtos_devolvidos": produtos_devolvidos})
+        else:
+            print(f"Erro: Venda com código {codigoVenda} não encontrada.")
+
+    def historicoDevolucoes(self):
+        return self.historicoDevolucoes

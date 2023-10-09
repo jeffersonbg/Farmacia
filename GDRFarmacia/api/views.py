@@ -11,8 +11,10 @@ from GDRFarmacia.models import Produto
 from GDRFarmacia.api.serializers import ProdutoSerializer
 from GDRFarmacia.models import Estoque
 from GDRFarmacia.api.serializers import EstoqueSerializer
-
-
+from GDRFarmacia.models import Compra
+from GDRFarmacia.api.serializers import CompraSerializer
+from GDRFarmacia.models import Caixa
+from GDRFarmacia.api.serializers import CaixaSerializer
 
 class EnderecoListCreateView(ModelViewSet):
     queryset = Endereco.objects.all()
@@ -37,3 +39,11 @@ class ProdutoListCreateView(ModelViewSet):
 class EstoqueListCreateView(ModelViewSet):
     queryset = Estoque.objects.all()
     serializer_class = EstoqueSerializer
+
+class CompraListCreateView(ModelViewSet):
+    queryset = Compra.objects.all()
+    serializer_class = CompraSerializer
+
+class CaixaListCreateView(ModelViewSet):
+    queryset = Caixa.objects.all()
+    serializer_class = CaixaSerializer
