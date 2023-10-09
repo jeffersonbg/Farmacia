@@ -26,7 +26,8 @@ from GDRFarmacia.api.views import FuncionarioListCreateView
 from GDRFarmacia.api.views import ClienteListCreateView
 from GDRFarmacia.api.views import ProdutoListCreateView
 from GDRFarmacia.api.views import EstoqueListCreateView
-
+from GDRFarmacia.api.views import CompraListCreateView
+from GDRFarmacia.api.views import CaixaListCreateView
 
 router = SimpleRouter()
 
@@ -37,7 +38,8 @@ router.register("api/GDRFarmacia", FuncionarioListCreateView, basename="funciona
 router.register("api/GDRFarmacia", ClienteListCreateView, basename="clientes"),
 router.register("api/GDRFarmacia", ProdutoListCreateView, basename="produtos"),
 router.register("api/GDRFarmacia", EstoqueListCreateView, basename="estoques"),
-
+router.register("api/GDRFarmacia", EstoqueListCreateView, basename="compras"),
+router.register("api/GDRFarmacia", CaixaListCreateView, basename="caixas"),
 
 urlpatterns = [
     path("admin/", admin.site.urls),
