@@ -1,3 +1,4 @@
+"""models"""
 from django.db import models
 
 # Create your models here.
@@ -5,8 +6,8 @@ from django.db import models
 # endereco_model.py
 
 
-
 class Endereco(models.Model):
+    """Endereço"""
     rua = models.CharField(max_length=100)
     bairro = models.CharField(max_length=100)
     numero_casa = models.CharField(max_length=10)
@@ -16,9 +17,11 @@ class Endereco(models.Model):
     cidade = models.CharField(max_length=100)
 
     def __str__(self):
-        return f"{self.rua}, {self.numero_casa} - {self.bairro}, {self.cidade}/{self.estado}, CEP: {self.cep}"
-    
+        return (f"{self.rua}, {self.numero_casa} - {self.bairro}, {self.cidade} / {self.estado}, CEP: {self.cep}")
+
+
 class Usuario(models.Model):
+    """Usuario"""
     id = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
@@ -26,15 +29,20 @@ class Usuario(models.Model):
     endereco = models.ForeignKey(Endereco, on_delete=models.CASCADE)
 
     def __str__(self):
+
         return self.nome
 
     def imprimir_informacoes(self):
+
         print(f"Nome: {self.nome}")
         print(f"Telefone: {self.telefone}")
         print(f"CPF: {self.cpf}")
 
     # Classe Funcionario herda de Usuario
+
+
 class Funcionario(Usuario):
+    """funcionario"""
     cargo = models.CharField(max_length=100)
     salario = models.DecimalField(max_digits=10, decimal_places=2)
     telefone = models.CharField(max_length=20, blank=True)
@@ -44,6 +52,7 @@ class Funcionario(Usuario):
         return f"Funcionário: {self.nome}, Cargo: {self.cargo}"
 
     def imprimir_informacoes(self):
+
         print(f"Nome: {self.nome}")
         print(f"Cargo: {self.cargo}")
         print(f"Salário: {self.salario}")
@@ -51,7 +60,9 @@ class Funcionario(Usuario):
         print(f"CPF: {self.cpf}")
 
     @classmethod
-    def cadastrar_funcionario(cls, nome, email, senha, cargo, salario, telefone, cpf):
+    def cadastrar_funcionario(cls, nome, email, senha,
+                              cargo, salario, telefone, cpf):
+        """cadastro"""
         funcionario = cls(
             nome=nome,
             email=email,
@@ -64,7 +75,9 @@ class Funcionario(Usuario):
         funcionario.save()
         return funcionario
 
-    def atualizar_funcionario(self, nome, email, senha, cargo, salario, telefone, cpf):
+    def atualizar_funcionario(self, nome, email, senha,
+                              cargo, salario, telefone, cpf):
+        """atualiza funcionario"""
         self.nome = nome
         self.email = email
         self.senha = senha
@@ -74,7 +87,9 @@ class Funcionario(Usuario):
         self.cpf = cpf
         self.save()
 
+
 class Cliente(Usuario):
+    """Cliente"""
     telefone = models.CharField(max_length=20, blank=True)
     cpf = models.CharField(max_length=14, unique=True)
 
@@ -88,6 +103,7 @@ class Cliente(Usuario):
 
     @classmethod
     def cadastrar_cliente(cls, nome, email, senha, telefone, cpf):
+        """Cadastro cliente"""
         cliente = cls(
             nome=nome,
             email=email,
@@ -99,6 +115,7 @@ class Cliente(Usuario):
         return cliente
 
     def atualizar_cliente(self, nome, email, senha, telefone, cpf):
+        """Atualizar cliente"""
         self.nome = nome
         self.email = email
         self.senha = senha
@@ -106,7 +123,9 @@ class Cliente(Usuario):
         self.cpf = cpf
         self.save()
 
+
 class Produto(models.Model):
+    """Produto"""
     id = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=255)
     descricao = models.TextField()
@@ -120,7 +139,10 @@ class Produto(models.Model):
     def __str__(self):
         return self.nome
 
-    def cadastrarProduto(self, nome, descricao, categoria, precoVenda, precoCompra, quantidadeEmEstoque, fabricante, fornecedor):
+    def cadastrarProduto(self, nome, descricao, categoria, precoVenda, 
+                         precoCompra, quantidadeEmEstoque, 
+                         fabricante, fornecedor):
+        """Cadastrar Produto"""
         self.nome = nome
         self.descricao = descricao
         self.categoria = categoria
@@ -142,17 +164,22 @@ class Produto(models.Model):
         print(f"Fabricante: {self.fabricante}")
         print(f"Fornecedor: {self.fornecedor}")
 
+
 class Estoque(models.Model):
+    """Estoque"""
     quantidadeMinima = models.IntegerField()
     produtoList = models.ManyToManyField(Produto, related_name='estoque')
 
     def adicionarProduto(self, produto):
+        """adicionar produto"""
         if isinstance(produto, Produto):
             self.produtoList.append(produto)
         else:
-            print("O objeto não é um Produto e não pode ser adicionado ao estoque.")
+            print("O objeto não é um Produto e não" +
+                  "pode ser adicionado ao estoque.")
 
     def removerProduto(self, produto):
+        """remover produto"""
         if produto in self.produtoList:
             self.produtoList.remove(produto)
         else:
@@ -165,9 +192,13 @@ class Estoque(models.Model):
     def notificarEstoqueBaixo(self):
         for produto in self.produtoList:
             if produto.quantidadeEmEstoque < self.quantidadeMinima:
-                print(f"Notificação: O produto {produto.nome} está com a quantidade abaixo do mínimo. Quantidade atual: {produto.quantidadeEmEstoque}")
+                print(f"Notificação: O produto {produto.nome} está com a" +
+                      "quantidade abaixo do mínimo." +
+                      "Quantidade atual: {produto.quantidadeEmEstoque}")
+
 
 class Compra(models.Model):
+    """Compra"""
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     codigoVenda = models.CharField(max_length=100)
     listProduto = models.ManyToManyField(Produto)
@@ -195,7 +226,9 @@ class Compra(models.Model):
         print(f"Funcionário: {self.nomeFuncionario}")
         print(f"Valor Total: R${self.calcularValorTotal()}")
 
+
 class Caixa(models.Model):
+    """Caixa"""
     def __init__(self):
         self.historicoVenda = []
         self.historicoDevolucoes = []
@@ -204,7 +237,8 @@ class Caixa(models.Model):
         # Verifica se a compra é válida antes de adicioná-la ao histórico
         if isinstance(compra, Compra):
             self.historicoVenda.append(compra)
-            print(f"Compra validada e registrada. Código da Venda: {compra.codigoVenda}")
+            print("Compra validada e registrada." +
+                  "Código da Venda:" + compra.codigoVenda)
         else:
             print("Erro: Compra inválida. A venda não foi registrada.")
 
@@ -224,9 +258,11 @@ class Caixa(models.Model):
                         compra.listProduto.remove(produto_devolvido)
                         produto_devolvido.quantidadeEmEstoque += 1
                         produto_devolvido.save()
-                        print(f"Produto {produto_devolvido.nome} devolvido e adicionado ao estoque.")
+                        print(f"Produto {produto_devolvido.nome}" +
+                              "devolvido e adicionado ao estoque.")
                     else:
-                        print(f"Erro: Produto {produto_devolvido.nome} não pertence à compra.")
+                        print(f"Erro: Produto {produto_devolvido.nome}" +
+                              "não pertence à compra.")
                 else:
                     print("Erro: Produto inválido.")
             self.historicoDevolucoes.append({"codigoVenda": codigoVenda, "produtos_devolvidos": produtos_devolvidos})
