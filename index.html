@@ -4,19 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Poppins:wght@400;500;600;700;900&display=swap"
+      rel="stylesheet">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="main.js"></script>
     <title>Login</title>
 </head>
 <body>
+
+   </div>
     <div class="login-container">
-        <h1>Farmacia</h1>
+        <span><h1>PharmaLife</h1></span>
+
+        <p>Faça seu login </p>
         <form id="login">
-            <label for="username">Funcionário:</label>
+            <label for="username">Endereço de e-mail</label>
             <input  type="email" id="email" name="email" placeholder="E-mail ou CPF" >
             
-            <label for="password">Senha:</label>
+            <label for="password">Sua senha</label>
             <input type="password" id="password" name="password" placeholder="password" >
-            <a href="esquecisenha.html">Esqueci minha senha</a>
             
             <!-- <div class="cadastrar">
 
@@ -24,9 +33,11 @@
             </div>-->
             
         </form>
-        <button type="submit" onclick="logar()">Entrar</button>
+        
+     <button type="submit" onclick="logar()">Entrar</button>
+     <br> <a href="esquecisenha.html">Esqueci minha senha</a></br>
     </div>
     
    
 </body>
-</html>
+</html> 
