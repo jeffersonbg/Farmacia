@@ -11,6 +11,11 @@ body {
   font-size: 1.1em;
   height: 100%;
   width: 100%;
+background-image: url("imagens/fundo.png");
+  background-size: 50% auto;
+  background-repeat: no-repeat;
+background-position: center top ;
+background-position: fixed;
 
 
 }
@@ -37,6 +42,20 @@ nav a:hover {
   color: #ff5733;
 }
 
+li a:hover{
+
+  display: inline-block;
+  background-color:hwb(358 12% 18%) ;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  border-radius: 5px; /* Cantos arredondados */
+  border: 1px solid ; /* Cor da borda da caixa */
+  font-weight: bold; /* Texto em negrito */
+  text-align: center; /* Centralize o texto horizontalmente */
+  transition: background-color 0.3s;
+}
+
 
 #logo {
   padding-left: 50px;
@@ -53,15 +72,15 @@ main {
   align-items: center;
   height: 80vh;
 }
-nav img {
-  width: 20px;
-  height: 20px;
-  margin-left: 95%;
-}
+
 
 #conteudo-principal {
   padding: 15px;
   width: 100%;
+}
+
+.imagem-banner {
+  margin-bottom: 5px;
 }
 
 .nav-azul {
@@ -178,6 +197,7 @@ nav img {
   width: 100%;
   margin-right: 10px;
   color: #fff;
+  margin-top: auto;
 }
 
 .dashboard-item {
@@ -218,7 +238,16 @@ nav img {
   background-color: #0056b3;
   color: #fff;
 }
+.texto-banner {
+  font-family: 'Inter', sans-serif;
+  font-size: 1em;
+  color: #0C2D48;
+}
 
+.texto-fora {
+
+  padding: 10px;
+}
 footer {
   background-color:#0C2D48;
   color: #fff;
