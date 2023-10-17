@@ -53,25 +53,25 @@
             
 
             <li class="list">
-              <a href="estoque.html">
+              <a href="../estoque.html">
                 <span class="icone_menu_lateral"><i class="fa-solid fa-box"></i></span>
                 <span class="titulo_menu_lateral">Estoque</span>
               </a>
             </li>
             <li class="list">
-              <a href="cliente.html">
+              <a href="../cliente.html">
                 <span class="icone_menu_lateral"><i class="fa-solid fa-user-group"></i></span>
                 <span class="titulo_menu_lateral">Cliente</span>
               </a>
             </li>
             <li class="list">
-              <a href="venda.html">
+              <a href="../venda.html">
                 <span class="icone_menu_lateral"><i class="fa-sharp fa-solid fa-bag-shopping"></i></span>
                 <span class="titulo_menu_lateral">Venda</span>
               </a>
             </li>
             <li class="list">
-                <a href="cadastro.html">
+                <a href="../cadastro.html">
                   <span class="icone_menu_lateral"><i class="fa fa-users"></i></span>
                   <span class="titulo_menu_lateral">Cadastrar funcionário </span>
                 </a>
@@ -118,19 +118,10 @@
             <label for="nome_funcionario">Nome do Funcionário:</label>
             <input type="text" id="nome_funcionario" name="nome_funcionario" required class="textinput"><br>
     
-            <input type="submit" value="Cadastrar Venda" class="ButtonBusca">
+            <input type="submit" value="Confirma" class="ButtonBusca">
         </form>
         <div class="separator"></div>
-         <div class="ListaItens">
-            <p><strong>Quantidade:</strong> <?php echo $_POST["quantidade"]; ?></p>
-            <p><strong>Código do Produto:</strong> <?php echo $_POST["cod_produto"]; ?></p>
-            <p><strong>Valor a Pagar:</strong> R$ <?php echo number_format($_POST["valor_pagar"], 2); ?></p>
-            <p><strong>Data da Compra:</strong> <?php echo $_POST["data_compra"]; ?></p>
-            <p><strong>Forma de Pagamento:</strong> <?php echo $_POST["forma_pagamento"]; ?></p>
-            <p><strong>Desconto:</strong> R$ <?php echo number_format($_POST["desconto"], 2); ?></p>
-            <p><strong>CPF do Cliente:</strong> <?php echo $_POST["cpf_cliente"]; ?></p>
-            <p><strong>Nome do Funcionário:</strong> <?php echo $_POST["nome_funcionario"]; ?></p>
-          </div>
+         
         </div>
         </div>
     </div>

@@ -12,14 +12,19 @@ body {
   height: 100%;
   width: 100%;
 background-image: url("imagens/fundo.png");
-  background-size: 50% auto;
+  background-size: 60% auto;
   background-repeat: no-repeat;
 background-position: center top ;
 background-position: fixed;
 
 
+
 }
 
+html{
+  max-width: 100%;
+  height: auto;
+}
 nav ul {
   list-style-type: none;
   margin: 0;
@@ -105,6 +110,7 @@ main {
 .navigation:hover {
   width: 300px;
 }
+
 
 .navigation ul {
   position: absolute;
@@ -255,3 +261,105 @@ footer {
   padding: 10px 0;
   margin-top: 10%;
 }
+
+.wrapper{
+  max-width: 100%;
+  height: auto;
+  padding: 2px;
+}
+
+
+.container-vendas{
+  display: flex;
+  
+  
+}
+
+.vendas{
+  padding: 15px;
+}
+
+.clientes{
+  padding: 15px;
+}
+
+.estoque{
+  padding: 15px;
+}
+.Text-area{
+  margin: 20px;
+  border-radius: 5px;
+  background-color: #33333313;
+  padding: 60px;
+  background-position: center;
+  
+}
+.functions{
+  align-items: center;
+}
+
+.functions a{
+  text-decoration: none;
+  border-style: groove;
+  border-radius: 4px;
+  align-items: center;
+  margin: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: rgb(16, 16, 65);
+}
+
+.DescriçãoProduto{
+  display: flex;
+  
+}
+.textinput{
+  width: 150px;
+  height: 25px;
+  
+  margin-bottom: 90px;
+}
+
+.textinputDescrição{
+  
+  width: 300px;
+  height: 100px;
+}
+.Preçoinput{
+  width: 150px;
+  height: 25px;
+}
+
+.ButtonEstoque:hover{
+  background-color: #0C2D48;
+  color:#fff; 
+  
+}
+
+
+.QuantidadeProd{
+  width: 60px;
+  height: 25px;
+}
+
+.DataEstoque{
+  width: 150px;
+  height: 25px;
+
+}
+.inicial-farmacia img{
+  max-width: 100%;
+  height: auto;
+ 
+}
+
+.functions button{
+  border: none;
+  
+  width: 200px;
+}
+
+
+
+
+
