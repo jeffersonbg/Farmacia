@@ -8,7 +8,7 @@ function logar(){
    
     if (email == "arthur@hotmail.com" && password == 12345) {
         
-        window.location.href = "cadastro.html" ;
+        window.location.href = "farmacia.html" ;
 
     } else {
         alert("Credenciais inválidas. Tente novamente.");

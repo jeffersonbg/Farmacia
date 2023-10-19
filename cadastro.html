@@ -2,22 +2,59 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Cadastro de Usuário</title>
+    <title>Cadastro de Funcionário</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #FE8F4C;
             margin: 0;
             padding: 0;
         }
+        header {
+             background-color: #333;
+             color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav ul {
+             list-style-type: none;
+             margin: 0;
+             padding: 0;
+        }
+
+        nav li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ff5733;
+        }
+        nav img{
+            width: 20px;
+            height: 20px;
+            margin-left: 95%;
+        }
+        
+
 
         .container {
             max-width: 400px;
+            height: 400px;
             margin: 0 auto;
             padding: 20px;
             background-color: #fff;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 100px;
         }
 
         h2 {
@@ -47,6 +84,8 @@
             padding: 10px 20px;
             border-radius: 3px;
             cursor: pointer;
+            margin-left: 37%;
+            margin-top: 10%;
             
         }
 
@@ -67,11 +106,31 @@
         .login-link a:hover {
             text-decoration: underline;
         }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 100px;    
+        }
     </style>
 </head>
 <body>
+    <header>
+        <nav>
+            <a href="#"><img  src="imagens/perfil.png" alt="perfil"></a>
+            <ul>
+                <li><a href="farmacia.html">Início</a></li>
+                <li><a href="#">Produtos</a></li>
+                <li><a href="#">Vendas</a></li>
+                <li><a href="#">Relatórios</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
     <div class="container">
-        <h2>Cadastro de Usuário</h2>
+        <h2>Cadastro de Funcionário</h2>
         <form action="processar_cadastro.php" method="POST">
             <label for="nome">Nome:</label>
             <input type="text" id="nome" name="nome" required>
@@ -81,13 +140,12 @@
 
             <label for="senha">Senha:</label>
             <input type="password" id="senha" name="senha" required>
-
-            <button type="submit">Cadastrar</button>
+   
         </form>
-
-        <div class="login-link">
-            Já tem uma conta? <a href="login.html">Faça login aqui</a>.
-        </div>
+        <button type="submit">Cadastrar</button>
     </div>
+    <footer>
+        <p>&copy; 2023 Farmácia</p>
+    </footer>
 </body>
 </html>
