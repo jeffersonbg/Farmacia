@@ -41,4 +41,5 @@ rectangle "Gerenciar Produtos" {
 
 f <|-- g
 
+
 @enduml
